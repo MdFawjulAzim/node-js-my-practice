@@ -13,6 +13,7 @@ let server= http.createServer(function(req,res){
     res.write(myHostName);
     res.write(myPathName);
     res.write(mySearcher);
+    res.write("hello world!");
     res.end();
 
 
