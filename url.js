@@ -10,7 +10,7 @@ let server= http.createServer(function(req,res){
     let mySearcher = myURL.search;
 
     res.writeHead(200,{'Content-Type':'text/html'});
-    res.write(myHostName);
+    // res.write(myHostName);
     res.write(myPathName);
     res.write(mySearcher);
     res.write("hello world!");
