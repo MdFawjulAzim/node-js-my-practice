@@ -62,7 +62,7 @@ const fs = require('fs');
 
 async function CreateFolderSync(){
     try{
-        const data = await fs.rmdirSync('sample2.txt');
+        const data = await fs.mkdirSync('sample2.html');
         console.log('File created successfully');
     }
     catch(err){
