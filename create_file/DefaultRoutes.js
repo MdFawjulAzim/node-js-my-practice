@@ -1,5 +1,4 @@
 const http = require("http");
-const fs = require("fs");
 
 // Routes object
 const routes = {
@@ -10,8 +9,6 @@ const routes = {
     },
     "/students": {
         GET: (_req, res) => {
-            const raw = fs.readFileSync("./data/db.json");
-            const students = JSON.parse(raw);
             sendPlainResponse(res, { body: students });
         },
         POST: (req, res) => {
@@ -22,12 +19,9 @@ const routes = {
 
             req.on("end", () => {
                 const payload = JSON.parse(body);
-                const raw = fs.readFileSync("./data/db.json");
-                const students = JSON.parse(raw);
                 students.push(payload);
-                fs.writeFileSync("./data/db.json", JSON.stringify(students));
                 sendPlainResponse(res, {
-                    body: { message: "Student added successfully", student: students }
+                    body: { message: "Student added successfully", student: payload }
                 });
             });
         },
@@ -39,7 +33,20 @@ const routes = {
     }
 };
 
-
+const students = [
+    {
+        id: 1,
+        firstName: "John",
+        lastName: "Doe",
+        age: 20
+    },
+    {
+        id: 2,
+        firstName: "Shahin",
+        lastName: "Doe",
+        age: 22
+    }
+];
 
 const sendPlainResponse = (res, {
     contentType = 'application/json',
